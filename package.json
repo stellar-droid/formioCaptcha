@@ -1,0 +1,32 @@
+{
+  "name": "custom-formio-component-in-react",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "main": "src/index.js",
+  "dependencies": {
+    "@cloudflare/pages-plugin-hcaptcha": "^1.0.3",
+    "@marsidev/react-turnstile": "^0.5.3",
+    "bootstrap-icons": "^1.11.3",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-formio": "4.2.4",
+    "react-google-recaptcha-v3": "^1.10.1",
+    "react-scripts": "5.0.1"
+  },
+  "devDependencies": {
+    "typescript": "3.3.3"
+  },
+  "scripts": {
+    "start": " react-scripts --openssl-legacy-provider start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}
