@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { ReactComponent } from "react-formio";
-import settingsForm from "./Toggle.settingsForm";
+import settingsForm from "./Captcha.settingsForm";
 import CaptchaComponent from "./CaptchaComponent";
 /**
  * An example React component
@@ -40,7 +40,7 @@ import CaptchaComponent from "./CaptchaComponent";
 //   }
 // };
 
-export default class Toggle extends ReactComponent {
+export default class Captcha  {
   /**
    * This function tells the form builder about your component. It's name, icon and what group it should be in.
    *
@@ -53,7 +53,7 @@ export default class Toggle extends ReactComponent {
       group: "Data",
       documentation: "",
       weight: -10,
-      schema: Toggle.schema()
+      schema: Captcha.schema()
     };
   }
 
@@ -65,9 +65,10 @@ export default class Toggle extends ReactComponent {
    * @returns {*}
    */
   static schema() {
-    return ReactComponent.schema({
-      type: "toggleCustomComp",
+    return Captcha.schema({
+      type: "CaptchaCustomComp",
       label: "Captcha Component",
+      
     });
   }
 

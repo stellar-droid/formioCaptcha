@@ -1,5 +1,5 @@
-import toggleCustomComp from "./Toggle";
+import CaptchaCustomComp from "./Captcha";
 
 export default {
-  toggleCustomComp
+  CaptchaCustomComp
 };
