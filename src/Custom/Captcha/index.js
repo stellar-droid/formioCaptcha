@@ -40,7 +40,7 @@ import CaptchaComponent from "./CaptchaComponent";
 //   }
 // };
 
-export default class Captcha  {
+export default class Captcha extends ReactComponent {
   /**
    * This function tells the form builder about your component. It's name, icon and what group it should be in.
    *
@@ -65,7 +65,7 @@ export default class Captcha  {
    * @returns {*}
    */
   static schema() {
-    return Captcha.schema({
+    return ReactComponent.schema({
       type: "CaptchaCustomComp",
       label: "Captcha Component",
       

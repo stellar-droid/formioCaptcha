@@ -13,7 +13,7 @@ function App() {
   const [jsonSchema, setSchema] = React.useState({});
 const onFormChange = (schema) => {
   console.log("jsonSchema",schema);
-  setSchema(schema);
+  setSchema({ ...schema, components: [...schema.components] });
 }
   return (
     <>
