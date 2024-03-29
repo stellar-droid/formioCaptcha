@@ -53,7 +53,9 @@ export default class Captcha extends ReactComponent {
       group: "Data",
       documentation: "",
       weight: -10,
-      schema: Captcha.schema()
+      schema: Captcha.schema(),
+      dataSrc: "boolean",
+      data: {defaultValue: "false"},
     };
   }
 
@@ -87,8 +89,8 @@ export default class Captcha extends ReactComponent {
     return ReactDOM.render(
       <CaptchaComponent
         component={this.component} // These are the component settings if you want to use them to render the component.
-        value={this.dataValue} // The starting value of the component.
-        onChange={this.updateValue} // The onChange event to call when the value changes.
+        value={console.log(this.dataValue)} // The starting value of the component.
+        onChange={console.log("Updated Value ",this.updateValue)} // The onChange event to call when the value changes.
       />,
       
       element

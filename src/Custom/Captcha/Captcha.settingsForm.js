@@ -25,14 +25,16 @@ export default (...extend) => {
         key: "data",
         components: [{
           key: "defaultValue",
-          ignore: true
+          ignore: true,
+          value:"TestingData"
         },
           {
             type: "textfield",
             input: true,
             label: "My Custom Data Setting",  
             weight: 12,
-            key: "myCustomDataSetting" // This will be available as component.myCustomDataSetting
+            key: "myCustomDataSetting", // This will be available as component.myCustomDataSetting
+            // value:"TestingData"
           }
       ]
       },

@@ -76,7 +76,6 @@ const CaptchaComponent = () => {
     </div> */}
   <Turnstile siteKey='0x4AAAAAAAVpe0VoFwxydQWQ' data-theme="dark" onVerify={()=>{handleVerification(token)}}
         ref={turnstileRef} />
-  <button type="submit" disabled={!verified}>Submit </button>
     
   {/* <ReCaptcha/> */}
   
