@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { ReactComponent } from "react-formio";
-import settingsForm from "./Captcha.settingsForm";
-import CaptchaComponent from "./CaptchaComponent";
+import settingsForm from "./SimpleCaptcha.settingsForm";
+import SimpleCaptchaComponent from "./SimpleCaptchaComponent";
 /**
  * An example React component
  *
@@ -12,35 +12,9 @@ import CaptchaComponent from "./CaptchaComponent";
  *
  * This component is very simple. When clicked, it will set its value to "Changed".
  */
-// const ToggleCustomComp = class extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       value: props.value
-//     };
-//   }
 
-//   setValue = () => {
-//     this.setState(
-//       prevState => ({ value: !prevState.value }),
-//       () => this.props.onChange(null, this.state.value)
-//     );
-//   };
 
-//   render() {
-//     return (
-//       <>
-//       <label class="switch">
-//         <input type="checkbox" onClick={this.setValue} />
-//         <span class="slider round" />
-//       </label>
-//       <h1>Lokesh Wani</h1>
-//       </>
-//     );
-//   }
-// };
-
-export default class Captcha extends ReactComponent {
+export default class SimpleCaptcha extends ReactComponent {
   /**
    * This function tells the form builder about your component. It's name, icon and what group it should be in.
    *
@@ -48,16 +22,15 @@ export default class Captcha extends ReactComponent {
    */
   static get builderInfo() {
     return {
-      title: "Captcha",
+      title: "Simple Captcha",
       icon: "square",
       group: "Data",
       documentation: "",
       weight: -10,
-      schema: Captcha.schema(),
-      dataSrc: "boolean",
-      data: {defaultValue: "false"},
+      schema: SimpleCaptcha.schema()
     };
   }
+
 
   /**
    * This function is the default settings for the component. At a minimum you want to set the type to the registered
@@ -67,10 +40,16 @@ export default class Captcha extends ReactComponent {
    * @returns {*}
    */
   static schema() {
+    
     return ReactComponent.schema({
-      type: "CaptchaCustomComp",
-      label: "Captcha Component",
+      type: "SimpleCaptcha",
+      key: "simpleCaptcha",
+      label: "Simple Captcha",
+      value: "data",
       
+      data: {
+        simpleCaptcha: "Simple Captcha"
+      },
     });
   }
 
@@ -86,14 +65,20 @@ export default class Captcha extends ReactComponent {
    * #returns ReactInstance
    */
   attachReact(element) {
+
+    // const  {onUpdateValue}= this.props.onUpdateValue;  
+
     return ReactDOM.render(
-      <CaptchaComponent
+      <SimpleCaptchaComponent
         component={this.component} // These are the component settings if you want to use them to render the component.
-        value={"lokesjh"} // The starting value of the component.
-        onChange={console.log("Updated Value ",this.updateValue)} // The onChange event to call when the value changes.
+        value={"Simple Captcha Value"} // The starting value of the component.
+        onChange={this.updateValue} // The onChange event to call when the value changes.
+      // onUpdateValue={onUpdateValue}
       />,
-      
-      element
+
+
+      element,
+      // captchaComponent.handleCaptchaSolved = this.handleCaptchaSolved // Pass the method to the component
     );
   }
 
