@@ -61,7 +61,7 @@ function App() {
         <Card.Body className="text-center" style={{ border: "2px dotted black", paddingTop: "5px" }}>
           <Form form={jsonSchema} /*onChange={onUpdateFormData}*/ showSubmit={false}>
             {/* <SimpleCaptcha onUpdateValue={onUpdateCaptchaValue} /> */}
-
+  
           </Form>
         </Card.Body>
       </Card>
