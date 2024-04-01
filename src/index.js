@@ -17,7 +17,7 @@ function App() {
 
     setSchema({ ...schema, components: [...schema.components] });
   }
- 
+
 
   const [captchaValue, setCaptchaValue] = React.useState(''); // State to store captcha value
 
@@ -38,7 +38,7 @@ function App() {
       <div className="App">
         <FormBuilder
           form={{ display: "form" }}
-          
+
           // onChange={schema => console.log(schema)}
           onChange={onFormChange}
           options={{
@@ -54,14 +54,14 @@ function App() {
           }}
         >
 
-        </FormBuilder>   
+        </FormBuilder>
       </div>
       <Card className="my-4">
         <Card.Title className="text-center" style={{ fontWeight: "bold", fontSize: "20px", marginBottom: "20px" }}> Rendered Form</Card.Title>
         <Card.Body className="text-center" style={{ border: "2px dotted black", paddingTop: "5px" }}>
           <Form form={jsonSchema} /*onChange={onUpdateFormData}*/ showSubmit={false}>
             {/* <SimpleCaptcha onUpdateValue={onUpdateCaptchaValue} /> */}
-  
+
           </Form>
         </Card.Body>
       </Card>
