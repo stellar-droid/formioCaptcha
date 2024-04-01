@@ -54,7 +54,7 @@ function App() {
           }}
         >
 
-        </FormBuilder>
+        </FormBuilder>   
       </div>
       <Card className="my-4">
         <Card.Title className="text-center" style={{ fontWeight: "bold", fontSize: "20px", marginBottom: "20px" }}> Rendered Form</Card.Title>
