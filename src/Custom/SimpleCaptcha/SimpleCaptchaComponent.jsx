@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import refresh from '../../refresh.gif'
+import refresh from "../../refresh.gif";
 const generateCaptcha = () => {
   // Generate random captcha text
   const captchaText = Math.random().toString(36).substr(2, 6).toUpperCase();
@@ -23,25 +23,26 @@ const drawCaptcha = (text) => {
   return canvas.toDataURL(); // Return data URL of the canvas
 };
 
-const SimpleCaptcha = ({ onUpdateValue }) => {
+const SimpleCaptcha = ({ onUpdateValue,setValue, onChange }) => {
   const [captchaText, setCaptchaText] = useState(generateCaptcha());
   const [userInput, setUserInput] = useState("");
   const [message, setMessage] = useState("");
   const [captchaImage, setCaptchaImage] = useState(drawCaptcha(captchaText));
 
-  const handleValueChange = (value) => {
-    // onUpdateValue(value); // Pass the value to the parent component
-  };
+ 
 
   const handleChange = (event) => {
-    const inputText = event.target.value;
+    const inputText = event.target.value || "";
     setUserInput(inputText);
-    console.log("Captcha TEXT", inputText);
-    handleValueChange(inputText); // Pass the value to the parent component
+    console.log("Captcha TEXTs", inputText);
+    
 
+    setValue(inputText)
+    onChange(inputText)
     if (inputText.length === captchaText.length) {
       // Validate the user input
       if (inputText === captchaText) {
+        console.log("Matched Captcha ", inputText);
         setMessage("Captcha matched!");
         setCaptchaText(generateCaptcha()); // Generate new captcha text
         setCaptchaImage(drawCaptcha(captchaText)); // Generate new captcha image
@@ -57,9 +58,7 @@ const SimpleCaptcha = ({ onUpdateValue }) => {
     }
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-  };
+  
 
   const handleRefresh = () => {
     const newCaptchaText = generateCaptcha(); // Generate new captcha text
@@ -85,23 +84,35 @@ const SimpleCaptcha = ({ onUpdateValue }) => {
             borderRadius: "5px",
           }}
         />
-
-        
       </div>
       <input
         type="text"
+        required
         value={userInput}
         onChange={handleChange}
         placeholder="Enter Captcha"
         disabled={message === "Captcha matched!"}
-        style={{ marginTop: "10px",borderRadius:"5px",border:"1.5px solid black"}}
+        style={{
+          marginTop: "10px",
+          borderRadius: "5px",
+          border: "1.5px solid black",
+        }}
       />
       <button
-          style={{ marginLeft: "5px", backgroundColor: "white",borderRadius:"5px",border:"1.5px solid black" }}
-          onClick={handleRefresh}
-        >
-          <img src={refresh } alt="refresh" style={{width:"20px",height:"17px"}}/>
-        </button>
+        style={{
+          marginLeft: "5px",
+          backgroundColor: "white",
+          borderRadius: "5px",
+          border: "1.5px solid black",
+        }}
+        onClick={handleRefresh}
+      >
+        <img
+          src={refresh}
+          alt="refresh"
+          style={{ width: "20px", height: "17px" }}
+        />
+      </button>
 
       <p>{message}</p>
     </>

@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{ useRef, useState }from "react";
 import ReactDOM from "react-dom";
 import { createRoot } from 'react-dom/client';
 import { FormBuilder, Components, Form } from "@formio/react";
@@ -7,11 +7,20 @@ import components from "./Custom";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { Card } from "react-bootstrap";
 import SimpleCaptcha from "./Custom/SimpleCaptcha";
-Components.setComponents(components);
+import {Formio}   from 'formiojs';
+// Components.setComponents(components);
 
 function App() {
-
+  const formioRef = useRef(null);
   const [jsonSchema, setSchema] = React.useState({});
+
+  const [data, setData] = useState({});
+
+  const handleCustomComponentChange = (newValue) => {
+    setData({ ...data, captcha: newValue }); // Update the state with the new value
+  };
+
+
   const onFormChange = (schema) => {
     console.log("jsonSchema", schema);
 
@@ -21,18 +30,20 @@ function App() {
 
   const [captchaValue, setCaptchaValue] = React.useState(''); // State to store captcha value
 
-  const onUpdateFormData = (schema) => {
-    if (schema.components) { // Check if schema.components is an array
-      // Update the form data with the captcha value
-      const updatedData = { ...schema.data, captchaValue: captchaValue };
-      setSchema({ ...schema, data: updatedData, components: [...schema.components] });
-    } else {
-      console.error("Schema components is not an array:", schema.components);
-    }
-  };
-  const onUpdateCaptchaValue = (value) => {
-    setCaptchaValue(value); // Update the captcha value in state
-  };
+
+  
+  // const onUpdateFormData = (schema) => {
+  //   if (schema.components) { // Check if schema.components is an array
+  //     // Update the form data with the captcha value
+  //     const updatedData = { ...schema.data, captchaValue: captchaValue };
+  //     setSchema({ ...schema, data: updatedData, components: [...schema.components] });
+  //   } else {
+  //     console.error("Schema components is not an array:", schema.components);
+  //   }
+  // };
+  // const onUpdateCaptchaValue = (value) => {
+  //   setCaptchaValue(value); // Update the captcha value in state
+  // };
   return (
     <>
       <div className="App">
@@ -53,7 +64,7 @@ function App() {
             }   
           }}
         >
-
+            <SimpleCaptcha onChange={handleCustomComponentChange} />
         </FormBuilder>
       </div>
       <Card className="my-4">
@@ -71,3 +82,14 @@ function App() {
 
 const rootElement = document.getElementById('root');
 createRoot(rootElement).render(<App />);
+
+
+Formio.use(
+  {
+   components:{
+    ...components
+
+   }
+  }
+  
+);
