@@ -12,7 +12,7 @@ import CaptchaComponent from "./CaptchaComponent";
  *
  * This component is very simple. When clicked, it will set its value to "Changed".
  */
-// const ToggleCustomComp = class extends Component {
+
 //   constructor(props) {
 //     super(props);
 //     this.state = {

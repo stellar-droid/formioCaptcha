@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import { ReactComponent } from "react-formio";
-import settingsForm from "./SimpleCaptcha.settingsForm";
-import SimpleCaptchaComponent from "./SimpleCaptchaComponent";
-
-
+import settingsForm from "./GoogleCaptcha.settingsForm";
+import GoogleCaptchaComponent from "./GoogleCaptchaComponent";
 /**
  * An example React component
  *
@@ -15,15 +13,41 @@ import SimpleCaptchaComponent from "./SimpleCaptchaComponent";
  * This component is very simple. When clicked, it will set its value to "Changed".
  */
 
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       value: props.value
+//     };
+//   }
 
-export default class SimpleCaptcha extends ReactComponent {
+//   setValue = () => {
+//     this.setState(
+//       prevState => ({ value: !prevState.value }),
+//       () => this.props.onChange(null, this.state.value)
+//     );
+//   };
+
+//   render() {
+//     return (
+//       <>
+//       <label class="switch">
+//         <input type="checkbox" onClick={this.setValue} />
+//         <span class="slider round" />
+//       </label>
+//       <h1>Lokesh Wani</h1>
+//       </>
+//     );
+//   }
+// };
+
+export default class GoogleCaptcha extends ReactComponent {
   constructor(component, options, data) {
     super(component, options, data);
   }
 
-  init() {
-    super.init();
-  }
+  
+
+
   /**
    * This function tells the form builder about your component. It's name, icon and what group it should be in.
    *
@@ -31,12 +55,14 @@ export default class SimpleCaptcha extends ReactComponent {
    */
   static get builderInfo() {
     return {
-      title: "Simple Captcha",
+      title: "Google Captcha",
       icon: "square",
       group: "Data",
       documentation: "",
       weight: -10,
-      schema: SimpleCaptcha.schema()
+      schema: GoogleCaptcha.schema(),
+      dataSrc: "boolean",
+      data: {defaultValue: "false"},
     };
   }
 
@@ -48,12 +74,10 @@ export default class SimpleCaptcha extends ReactComponent {
    * @returns {*}
    */
   static schema() {
-
     return ReactComponent.schema({
-      type: "SimpleCaptcha",
-      key: "simpleCaptcha",
-      label: "Simple Captcha",
-
+      type: "GoogleCaptchaCustomComp",
+      label: "Google Captcha Component",
+      
     });
   }
 
@@ -82,32 +106,23 @@ export default class SimpleCaptcha extends ReactComponent {
    * #returns ReactInstance
    */
   attachReact(element) {
+
     const { component } = this;
     // const  {onUpdateValue}= this.props.onUpdateValue;  
     this.setValue = this.setValue.bind(this);
     this.updateValue = this.updateValue.bind(this);
+
+
     return ReactDOM.render(
-      <SimpleCaptchaComponent
+      <GoogleCaptchaComponent
         component={component} // These are the component settings if you want to use them to render the component.
-        setValue={this.setValue} // The starting value of the component.
+        value={this.setValue} // The starting value of the component.
         onChange={this.updateValue} // The onChange event to call when the value changes.
-      
       />,
-
-
-      element,
-      // captchaComponent.handleCaptchaSolved = this.handleCaptchaSolved // Pass the method to the component
+      
+      element
     );
-
   }
-
-
-  // getValue(value) {
-  //   console.log("getValue", value);
-  //   return super.getValue();
-
-  // }
-
 
   /**
    * Automatically detach any react components.
@@ -120,4 +135,3 @@ export default class SimpleCaptcha extends ReactComponent {
     }
   }
 }
-
