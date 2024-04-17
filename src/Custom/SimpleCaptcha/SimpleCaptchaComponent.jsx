@@ -24,7 +24,7 @@ const drawCaptcha = (text) => {
   return canvas.toDataURL(); // Return data URL of the canvas
 };
 
-const SimpleCaptcha = ({ onUpdateValue,setValue, onChange }) => {
+const SimpleCaptcha = ({ setValue, onChange }) => {
   const [captchaText, setCaptchaText] = useState(generateCaptcha());
   const [userInput, setUserInput] = useState("");
   const [message, setMessage] = useState("");

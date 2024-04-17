@@ -10,14 +10,6 @@ export default (...extend) => {
             // You can ignore existing fields.
             key: "placeholder",
             ignore: true
-          },
-          {
-            // Or add your own. The syntax is form.io component definitions.
-            type: "textfield",
-            input: true,
-            label: "My Custom Setting",
-            weight: 12,
-            key: "myCustomSetting" // This will be available as component.myCustomSetting
           }
         ]
       },
@@ -31,10 +23,10 @@ export default (...extend) => {
           {
             type: "textfield",
             input: true,
-            label: "My Custom Data Setting",  
+            label: "Api Key",  
             weight: 12,
-            key: "myCustomDataSetting", // This will be available as component.myCustomDataSetting
-            // value:"TestingData"
+            key: "apiCustomKey", // This will be available as component.myCustomDataSetting
+            tooltip: "Enter the API Key for Google Captcha",
           }
       ]
       },

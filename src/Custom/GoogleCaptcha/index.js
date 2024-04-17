@@ -116,7 +116,7 @@ export default class GoogleCaptcha extends ReactComponent {
     return ReactDOM.render(
       <GoogleCaptchaComponent
         component={component} // These are the component settings if you want to use them to render the component.
-        value={this.setValue} // The starting value of the component.
+        setValue={this.setValue} // The starting value of the component.
         onChange={this.updateValue} // The onChange event to call when the value changes.
       />,
       

@@ -34,7 +34,8 @@ function App() {
                 components: {
                   // CaptchaCustomComp: true,
                   SimpleCaptcha: true,
-                  GoogleCaptchaCustomComp: true
+                  GoogleCaptchaCustomComp: true,
+                  CkEditorComp: true,
                 }
               },
               advanced: false
