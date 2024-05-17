@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import refresh from "../../refresh.gif";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 const generateCaptcha = () => {
   // Generate random captcha text
   const captchaText = Math.random().toString(36).substr(2, 6).toUpperCase();
@@ -30,13 +30,11 @@ const SimpleCaptcha = ({ setValue, onChange }) => {
   const [message, setMessage] = useState("");
   const [captchaImage, setCaptchaImage] = useState(drawCaptcha(captchaText));
 
- 
-
   const handleChange = (event) => {
     const inputText = event.target.value || "";
     setUserInput(inputText);
     console.log("Captcha TEXTs", inputText);
-        onChange(inputText)
+    onChange(inputText);
     // if (inputText.length === captchaText.length) {
     //   // Validate the user input
     //   if (inputText === captchaText) {
@@ -56,8 +54,6 @@ const SimpleCaptcha = ({ setValue, onChange }) => {
     // }
   };
 
-  
-
   const handleRefresh = () => {
     const newCaptchaText = generateCaptcha(); // Generate new captcha text
     setCaptchaText(newCaptchaText); // Set new captcha text
@@ -67,18 +63,22 @@ const SimpleCaptcha = ({ setValue, onChange }) => {
   };
 
   const verifyCaptcha = () => {
-    if (userInput.length === captchaText.length) {
+    if (
+      userInput.length === captchaText.length ||
+      userInput.length > 6 ||
+      userInput.length < 6
+    ) {
       // Validate the user input
       if (userInput === captchaText) {
-        onChange("True")
+        onChange("True");
         console.log("Matched Captcha ", userInput);
         setMessage("Captcha matched!");
         setCaptchaText(generateCaptcha()); // Generate new captcha text
         setCaptchaImage(drawCaptcha(captchaText)); // Generate new captcha image
       } else {
         setMessage("Captcha does not match. Please try again.");
-        setTimeout(() => handleRefresh(), 3000); // Refresh captcha
-        setValue("")
+        setTimeout(() => setMessage(""), 3000); // Refresh captcha
+        // setValue("")
       }
       // Clear input field
       //   setUserInput("");
@@ -86,7 +86,7 @@ const SimpleCaptcha = ({ setValue, onChange }) => {
       // If the user is backspacing, clear the error message
       setMessage("");
     }
-  }
+  };
 
   return (
     <>
@@ -110,6 +110,7 @@ const SimpleCaptcha = ({ setValue, onChange }) => {
             backgroundColor: "white",
             borderRadius: "5px",
             border: "1.5px solid black",
+            height: "49px",
           }}
           onClick={handleRefresh}
         >
@@ -121,6 +122,7 @@ const SimpleCaptcha = ({ setValue, onChange }) => {
         </button>
       </div>
       <input
+        className="inputText"
         type="text"
         required
         value={userInput}
@@ -129,12 +131,39 @@ const SimpleCaptcha = ({ setValue, onChange }) => {
         disabled={message === "Captcha matched!"}
         style={{
           marginTop: "10px",
-          borderRadius: "5px",
-          border: "1.5px solid black",
+          borderRadius: "4px",
+          border: "1px solid #ccc",
+          padding: "5px",
+          width: "150px",
+          left: "450px",
+          display: "flex",
+          position: "absolute",
         }}
       />
-      <Button variant="primary" disabled={message === "Captcha matched!"} onClick={verifyCaptcha}>Verify</Button>
-      <p>{message}</p>
+      <Button
+        style={{
+          position: "absolute",
+          display: "flex",
+          right: "420px",
+          top: "85px",
+          height: "35px",
+        }}
+        variant="primary"
+        disabled={message === "Captcha matched!"}
+        onClick={verifyCaptcha}
+      >
+        Verify
+      </Button>
+      <p
+        style={{
+          position: "absolute",
+          display: "flex",
+          right: "420px",
+          top: "120px",
+        }}
+      >
+        {message}
+      </p>
     </>
   );
 };

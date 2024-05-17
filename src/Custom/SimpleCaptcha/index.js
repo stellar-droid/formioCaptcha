@@ -33,7 +33,7 @@ export default class SimpleCaptcha extends ReactComponent {
     return {
       title: "Simple Captcha",
       icon: "square",
-      group: "Data",
+      group: "advanced",
       documentation: "",
       weight: -10,
       schema: SimpleCaptcha.schema()
@@ -52,7 +52,7 @@ export default class SimpleCaptcha extends ReactComponent {
     return ReactComponent.schema({
       type: "SimpleCaptcha",
       key: "simpleCaptcha",
-      label: "Simple Captcha",
+      label: "",
 
     });
   }

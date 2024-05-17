@@ -45,7 +45,7 @@ export default class GoogleCaptcha extends ReactComponent {
     super(component, options, data);
   }
 
-  
+
 
 
   /**
@@ -57,12 +57,14 @@ export default class GoogleCaptcha extends ReactComponent {
     return {
       title: "Google Captcha",
       icon: "square",
-      group: "Data",
+      group: "advanced",
       documentation: "",
       weight: -10,
       schema: GoogleCaptcha.schema(),
       dataSrc: "boolean",
-      data: {defaultValue: "false"},
+      validation: {
+        required: true
+      }
     };
   }
 
@@ -76,8 +78,9 @@ export default class GoogleCaptcha extends ReactComponent {
   static schema() {
     return ReactComponent.schema({
       type: "GoogleCaptchaCustomComp",
-      label: "Google Captcha Component",
-      
+      label: "",
+
+
     });
   }
 
@@ -119,7 +122,7 @@ export default class GoogleCaptcha extends ReactComponent {
         setValue={this.setValue} // The starting value of the component.
         onChange={this.updateValue} // The onChange event to call when the value changes.
       />,
-      
+
       element
     );
   }

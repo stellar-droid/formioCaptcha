@@ -6,8 +6,9 @@ import "./styles.css";
 import components from "./Custom";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { Card } from "react-bootstrap";
-import SimpleCaptcha from "./Custom/SimpleCaptcha";
+// import SimpleCaptcha from "./Custom/SimpleCaptcha";
 import { Formio } from 'formiojs';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Components.setComponents(components);
 
@@ -16,29 +17,46 @@ function App() {
   const [jsonSchema, setSchema] = React.useState({});
 
   const onFormChange = (schema) => {
-    console.log("jsonSchema", schema);
     setSchema({ ...schema, components: [...schema.components] });
+    console.log("jsonSchema", schema);
   }
 
-    return (
+  return (
     <>
       <div className="App">
         <FormBuilder
-          form={{ display: "form" }}
+          form={{display: 'form'}}
 
           // onChange={schema => console.log(schema)}
           onChange={onFormChange}
           options={{
+            showSubmit: false,
             builder: {
-              basic: {
-                components: {
-                  // CaptchaCustomComp: true,
-                  SimpleCaptcha: true,
-                  GoogleCaptchaCustomComp: true,
-                  CkEditorComp: true,
-                }
-              },
-              advanced: false
+              // basic: {
+              //   components:
+              //    {
+              //     // CaptchaCustomComp: true,
+              //     SimpleCaptcha: true,
+              //     GoogleCaptchaCustomComp: true,
+              //     CkEditorComp: true,
+              //   }
+              // },
+              // advanced: {
+              //   components: {
+              //   SimpleCaptcha: true,
+              //   GoogleCaptchaCustomComp: true,
+              //   CkEditorComp: true,
+              // }}
+              // customBasic: {
+              //   title: 'Custom  Components',
+              //   default: true,
+              //   weight: 0,
+              //   components: {
+              //     SimpleCaptcha: true,
+              //     GoogleCaptchaCustomComp: true,
+              //     CkEditorComp: true,
+              //   }
+              // }
             }
           }}
         >
@@ -67,7 +85,10 @@ Formio.use(
     components: {
       ...components
 
+
     }
   }
 
 );
+
+

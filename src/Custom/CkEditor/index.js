@@ -23,7 +23,7 @@ export default class CkEditor extends ReactComponent {
     return {
       title: "CkEditor",
       icon: "square",
-      group: "Data",
+      group: "advanced",
       documentation: "",
       weight: -10,
       schema: CkEditor.schema(),
@@ -41,7 +41,7 @@ export default class CkEditor extends ReactComponent {
   static schema() {
     return ReactComponent.schema({
       type: "CkEditorComp",
-      label: "CkEditor Component",
+      label: " ",
       
     });
   }
